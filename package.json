@@ -10,7 +10,9 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
-    "typescript": "3.4.5"
+    "styled-components": "^4.2.0",
+    "typescript": "3.4.5",
+    "unsplash-js": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,5 +34,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/styled-components": "^4.1.15",
+    "@types/unsplash-js": "^5.0.0"
   }
 }
