@@ -1,7 +1,7 @@
 import React, {useEffect, useState, Fragment, useCallback} from 'react';
 import Unsplash from 'unsplash-js';
 import {unsplash} from './keys.json';
-import {Arrow, Content, ErrorContent, FeaturedImage, Spinner} from './App.styled';
+import {Arrow, ColumnFlex, Content, Emojis, ErrorContent, FeaturedImage, Spinner} from './App.styled';
 
 const {photos} = new Unsplash(unsplash);
 
@@ -81,6 +81,7 @@ const App = () => {
             If you see this message, it means that the request to get their pictures have been blocked.
             Please try again in an hour <span aria-label="aww" role="img">😅</span>
           </p>
+
         </ErrorContent>
       )}
       <Content>
@@ -89,8 +90,16 @@ const App = () => {
           : (
             <Fragment>
               <Arrow onClick={decrement} hidden={current === 0} direction="left"/>
-              <FeaturedImage src={carousel[current]} alt=""/>
-              <Arrow onClick={increment} direction="right"/>
+              <ColumnFlex>
+                <FeaturedImage src={carousel[current]} alt=""/>
+                <Emojis>
+                  <span aria-label="aww" role="img">👍</span>
+                  <span aria-label="haha" role="img">😆</span>
+                  <span aria-label="thonk" role="img">🤔</span>
+                  <span aria-label="poop" role="img">💩</span>
+                </Emojis>
+              </ColumnFlex>
+              <Arrow onClick={increment} hidden={current === carousel.length - 2} direction="right"/>
             </Fragment>
           )
         }

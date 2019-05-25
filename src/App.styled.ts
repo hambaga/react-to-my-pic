@@ -28,7 +28,7 @@ export const ErrorContent = styled(Content)`
 `;
 
 export const FeaturedImage = styled.img`
-  height: 500px;
+  height: 400px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
 
@@ -93,5 +93,29 @@ export const Arrow = styled.i<ArrowProps>`
     border: solid lightblue;
     border-width: 0 var(--arrow-size) var(--arrow-size) 0;
     cursor: pointer;
+  }
+`;
+
+export const ColumnFlex = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Emojis = styled.span`
+  width: 500px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  
+  * {
+    align-self: center;
+    justify-self: center;
+    font-size: 64px;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.2);
+    }
   }
 `;
