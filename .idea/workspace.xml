@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="227bad4b-a571-42ec-9ba0-ae5127ce9a7a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/SummaryModal/SummaryModal.styled.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SummaryModal/SummaryModal.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SummaryModal/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/phi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/phi.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/emojis.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.styled.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.styled.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SummaryModal/SummaryModal.styled.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SummaryModal/SummaryModal.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SummaryModal/index.ts" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="82" column="14" selection-start-line="82" selection-start-column="14" selection-end-line="82" selection-end-column="14" />
+            <state relative-caret-position="440">
+              <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
               <folding>
                 <element signature="e#0#72#0" expanded="true" />
               </folding>
@@ -36,13 +37,27 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.styled.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1086">
-              <caret line="113" column="36" lean-forward="true" selection-start-line="113" selection-start-column="36" selection-end-line="113" selection-end-column="36" />
+            <state relative-caret-position="2640">
+              <caret line="132" column="2" lean-forward="true" selection-start-line="120" selection-end-line="132" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/emojis.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="13" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>padding: 100</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,9 +72,12 @@
         <option value="$PROJECT_DIR$/src/hooks.ts" />
         <option value="$PROJECT_DIR$/src/components/SummaryModal/index.tsx" />
         <option value="$PROJECT_DIR$/src/components/SummaryModal/index.ts" />
-        <option value="$PROJECT_DIR$/src/components/SummaryModal/SummaryModal.tsx" />
-        <option value="$PROJECT_DIR$/src/components/SummaryModal/SummaryModal.styled.ts" />
+        <option value="$PROJECT_DIR$/src/index.styled.ts" />
+        <option value="$PROJECT_DIR$/src/UIKit.styled.ts" />
         <option value="$PROJECT_DIR$/src/App.styled.ts" />
+        <option value="$PROJECT_DIR$/src/components/SummaryModal/SummaryModal.styled.ts" />
+        <option value="$PROJECT_DIR$/src/emojis.ts" />
+        <option value="$PROJECT_DIR$/src/components/SummaryModal/SummaryModal.tsx" />
         <option value="$PROJECT_DIR$/src/App.tsx" />
       </list>
     </option>
@@ -134,12 +152,13 @@
       <option name="presentableId" value="Default" />
       <updated>1558730331554</updated>
       <workItem from="1558730332753" duration="859000" />
-      <workItem from="1558732383060" duration="17047000" />
+      <workItem from="1558732383060" duration="20483000" />
+      <workItem from="1558758158726" duration="3399000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17906000" />
+    <option name="totallyTimeSpent" value="24741000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -171,9 +190,7 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/App.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.css" />
     <entry file="file://$PROJECT_DIR$/src/react-app-env.d.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -188,13 +205,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@types/react/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="501" column="9" selection-start-line="501" selection-start-column="9" selection-end-line="501" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -222,13 +232,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/SummaryModal/index.tsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/SummaryModal/SummaryModal.tsx">
+    <entry file="file://$PROJECT_DIR$/src/components/SummaryModal/index.tsx" />
+    <entry file="file://$PROJECT_DIR$/src/UIKit.styled.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="37">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@types/react/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20260">
+          <caret line="1039" column="8" selection-start-line="1039" selection-start-column="8" selection-end-line="1039" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -241,22 +256,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/SummaryModal/SummaryModal.styled.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+        <state relative-caret-position="534">
+          <caret line="43" column="16" lean-forward="true" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SummaryModal/SummaryModal.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.styled.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1086">
-          <caret line="113" column="36" lean-forward="true" selection-start-line="113" selection-start-column="36" selection-end-line="113" selection-end-column="36" />
+        <state relative-caret-position="2640">
+          <caret line="132" column="2" lean-forward="true" selection-start-line="120" selection-end-line="132" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/emojis.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="82" column="14" selection-start-line="82" selection-start-column="14" selection-end-line="82" selection-end-column="14" />
+        <state relative-caret-position="440">
+          <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
           <folding>
             <element signature="e#0#72#0" expanded="true" />
           </folding>

@@ -1,12 +1,31 @@
 import React, {useEffect, useState, Fragment, useCallback} from 'react';
 import Unsplash from 'unsplash-js';
 import {unsplash} from './keys.json';
-import {Arrow, ColumnFlex, Content, Emojis, ErrorContent, FeaturedImage, Spinner} from './App.styled';
+import {Arrow, ColumnFlex, Content, Emojis, ErrorContent, FeaturedImage, Spinner, Emoji} from './App.styled';
+
+interface CarouselItem {
+  src: string;
+  reaction: EmojiUnicode | null;
+}
+
+export type EmojiUnicode = '👍' | '🤔' | '😆' | '💩';
+
+interface Emoji {
+  unicode: EmojiUnicode;
+  color: string;
+}
+
+export const emojiMeta: Emoji[] = [
+  {unicode: '👍', color: 'sandybrown'},
+  {unicode: '🤔', color: 'indianred'},
+  {unicode: '😆', color: 'dodgerblue'},
+  {unicode: '💩', color: 'yellowgreen'}
+];
 
 const {photos} = new Unsplash(unsplash);
 
 const App = () => {
-  const [carousel, setCarousel] = useState<string[]>([]);
+  const [carousel, setCarousel] = useState<CarouselItem[]>([]);
   const [current, setCurrent] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -26,7 +45,10 @@ const App = () => {
                   if (carousel.length === 0) {
                     setLoading(false);
                   }
-                  return [...carousel, image.src];
+                  return [...carousel, {
+                    src: image.src,
+                    reaction: null
+                  }];
                 });
                 resolve();
               };
@@ -43,13 +65,13 @@ const App = () => {
   useEffect(() => {
     if (current !== carousel.length - 1 || carousel.length < 2) { return; }
     const restCarousel = [...carousel];
-    setCarousel([...restCarousel, '']);
+    setCarousel([...restCarousel, {src: '', reaction: null}]);
     setLoading(true);
     photos.getRandomPhoto({})
       .then(res => res.json())
       .then(val => {
         const src = val.urls.regular;
-        setCarousel([...restCarousel, src]);
+        setCarousel([...restCarousel, {src, reaction: null}]);
         return new Promise(resolve => {
           const image = new Image();
           image.src = val.urls.regular;
@@ -72,6 +94,15 @@ const App = () => {
     setCurrent(current => current + 1);
   }, [current, carousel]);
 
+  const getEmojiHandler = useCallback((emoji: EmojiUnicode) => {
+    return () => {
+      const newCarousel = [...carousel];
+      newCarousel[current].reaction = emoji;
+      setCarousel(newCarousel);
+      setCurrent(current => current + 1);
+    };
+  }, [carousel, current]);
+
   return (
     <Fragment>
       {error && (
@@ -79,9 +110,9 @@ const App = () => {
           <p>
             Unfortunately, the Unsplash folks only allow 50 requests per hour for development.
             If you see this message, it means that the request to get their pictures have been blocked.
-            Please try again in an hour <span aria-label="aww" role="img">😅</span>
+            Please try again in an hour <span aria-label="aww" role="img">😅</span>. But hey, you can still
+            check your status:
           </p>
-
         </ErrorContent>
       )}
       <Content>
@@ -91,15 +122,25 @@ const App = () => {
             <Fragment>
               <Arrow onClick={decrement} hidden={current === 0} direction="left"/>
               <ColumnFlex>
-                <FeaturedImage src={carousel[current]} alt=""/>
+                <FeaturedImage src={carousel[current].src} alt=""/>
                 <Emojis>
-                  <span aria-label="aww" role="img">👍</span>
-                  <span aria-label="haha" role="img">😆</span>
-                  <span aria-label="thonk" role="img">🤔</span>
-                  <span aria-label="poop" role="img">💩</span>
+                  {emojiMeta.map(({unicode}) => (
+                    <Emoji
+                      onClick={getEmojiHandler(unicode)}
+                      blurred={carousel[current].reaction !== null && carousel[current].reaction !== unicode}
+                      key={unicode}
+                      role="img"
+                    >
+                      {unicode}
+                    </Emoji>
+                  ))}
                 </Emojis>
               </ColumnFlex>
-              <Arrow onClick={increment} hidden={current === carousel.length - 2} direction="right"/>
+              <Arrow
+                onClick={increment}
+                hidden={current === carousel.length - 2 || carousel.length < 2 || current === carousel.length - 1}
+                direction="right"
+              />
             </Fragment>
           )
         }

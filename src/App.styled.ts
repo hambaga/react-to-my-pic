@@ -14,13 +14,14 @@ export const Content = styled.div`
 `;
 
 export const ErrorContent = styled(Content)`
+  flex-direction: column;
   animation: ${fadein} 0.4s;
   position: fixed;
   z-index: 10;
   padding: 10%;
   background: white;
   p {
-    font-size: 64px;
+    font-size: 56px;
     @media (max-width: 750px) {
       font-size: 32px;
     }
@@ -99,23 +100,34 @@ export const Arrow = styled.i<ArrowProps>`
 export const ColumnFlex = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
-export const Emojis = styled.span`
+export const Emojis = styled.div`
   width: 500px;
-  margin-top: 20px;
+  margin-top: 50px;
   display: grid;
   grid-template-columns: auto auto auto auto;
   
   * {
     align-self: center;
     justify-self: center;
-    font-size: 64px;
-    transition: all .2s ease-in-out;
+  }
+`;
 
-    &:hover {
-      cursor: pointer;
-      transform: scale(1.2);
-    }
+interface EmojiProps {
+  blurred?: boolean;
+}
+
+export const Emoji = styled.span<EmojiProps>`
+  ${props => props.blurred && css`
+    opacity: 0.5;
+  `};
+  font-size: 64px;
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.2);
   }
 `;
