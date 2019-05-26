@@ -11,6 +11,11 @@ export const Content = styled.div`
   align-items: center;
   height: 100vh;
   overflow: hidden;
+  
+  @media (max-width: 750px) {
+    padding: 10%;
+    height: 80vh;
+  }
 `;
 
 export const ErrorContent = styled(Content)`
@@ -113,7 +118,7 @@ export const Arrow = styled.i<ArrowProps>`
   }
   
   @media (max-width: 750px) {
-    bottom: 48px;
+    bottom: 45px;
     --arrow-size: 4px;
     height: calc(var(--arrow-size) * 3);
     border-width: 0 var(--arrow-size) var(--arrow-size) 0;
@@ -144,7 +149,7 @@ export const Emojis = styled.div`
   }
   
   @media (max-width: 750px) {
-    width: 70vw;
+    width: 65vw;
     position: fixed;
     bottom: 30px;
   }

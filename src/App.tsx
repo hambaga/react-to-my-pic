@@ -15,25 +15,13 @@ import {
 
 interface CarouselItem {
   src: string;
-  reaction: EmojiUnicode | null;
+  reaction: string | null;
   author: string;
   authorUrl: string;
   imageUrl: string;
 }
 
 export type EmojiUnicode = '👍' | '🤔' | '😆' | '💩';
-
-interface Emoji {
-  unicode: EmojiUnicode;
-  color: string;
-}
-
-export const emojiMeta: Emoji[] = [
-  {unicode: '👍', color: 'sandybrown'},
-  {unicode: '🤔', color: 'indianred'},
-  {unicode: '😆', color: 'dodgerblue'},
-  {unicode: '💩', color: 'yellowgreen'}
-];
 
 const {photos} = new Unsplash(unsplash);
 
@@ -141,10 +129,12 @@ const App = () => {
     )
   }
 
+  const showSpinner = (loading && carousel.length < 2) || (loading && current === carousel.length - 1);
+
   return (
     <Fragment>
       <Content>
-        {(loading && carousel.length < 2) || (loading && current === carousel.length - 1)
+        {showSpinner
           ? <Spinner/>
           : (
             <Fragment>
@@ -162,21 +152,21 @@ const App = () => {
                   </h4>
                 )}
                 <Emojis>
-                  {emojiMeta.map(({unicode}) => (
+                  {['👍', '🤔', '😆', '💩'].map((emoji) => (
                     <Emoji
-                      onClick={getEmojiHandler(unicode)}
-                      blurred={carousel[current].reaction !== null && carousel[current].reaction !== unicode}
-                      key={unicode}
+                      onClick={getEmojiHandler(emoji as EmojiUnicode)}
+                      blurred={carousel[current].reaction !== null && carousel[current].reaction !== emoji}
+                      key={emoji}
                       role="img"
                     >
-                      {unicode}
+                      {emoji}
                     </Emoji>
                   ))}
                 </Emojis>
               </ColumnFlex>
               <Arrow
                 onClick={increment}
-                hidden={current === carousel.length - 2 || carousel.length < 2 || current === carousel.length - 1}
+                hidden={current === carousel.length - 2 || current === carousel.length - 1 || carousel.length < 2}
                 direction="right"
               />
             </Fragment>
