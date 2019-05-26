@@ -1,11 +1,24 @@
 import React, {useEffect, useState, Fragment, useCallback} from 'react';
 import Unsplash from 'unsplash-js';
 import {unsplash} from './keys.json';
-import {Arrow, ColumnFlex, Content, Emojis, ErrorContent, FeaturedImage, Spinner, Emoji} from './App.styled';
+import {
+  Arrow,
+  ColumnFlex,
+  Content,
+  Emojis,
+  ErrorContent,
+  FeaturedImage,
+  Spinner,
+  Emoji,
+  Link,
+} from './App.styled';
 
 interface CarouselItem {
   src: string;
   reaction: EmojiUnicode | null;
+  author: string;
+  authorUrl: string;
+  imageUrl: string;
 }
 
 export type EmojiUnicode = '👍' | '🤔' | '😆' | '💩';
@@ -36,10 +49,10 @@ const App = () => {
       Array.from(Array(2)).map(() =>
         photos.getRandomPhoto({})
           .then(res => res.json())
-          .then(val => {
+          .then(({urls, user, links}) => {
             return new Promise(resolve => {
               const image = new Image();
-              image.src = val.urls.regular;
+              image.src = urls.regular;
               image.onload = () => {
                 setCarousel(carousel => {
                   if (carousel.length === 0) {
@@ -47,7 +60,10 @@ const App = () => {
                   }
                   return [...carousel, {
                     src: image.src,
-                    reaction: null
+                    reaction: null,
+                    author: user.name,
+                    authorUrl: user.links.html,
+                    imageUrl: links.html
                   }];
                 });
                 resolve();
@@ -65,16 +81,26 @@ const App = () => {
   useEffect(() => {
     if (current !== carousel.length - 1 || carousel.length < 2) { return; }
     const restCarousel = [...carousel];
-    setCarousel([...restCarousel, {src: '', reaction: null}]);
+    setCarousel([...restCarousel, {src: '', reaction: null, author: '', authorUrl: '', imageUrl: ''}]);
     setLoading(true);
     photos.getRandomPhoto({})
       .then(res => res.json())
-      .then(val => {
-        const src = val.urls.regular;
-        setCarousel([...restCarousel, {src, reaction: null}]);
+      .then((val) => {
+        console.log(val);
+        const {urls, user, links} = val;
+        const src = urls.regular;
+        setCarousel([
+          ...restCarousel, {
+            src,
+            reaction: null,
+            author: user.name,
+            authorUrl: user.links.html,
+            imageUrl: links.html
+          }
+        ]);
         return new Promise(resolve => {
           const image = new Image();
-          image.src = val.urls.regular;
+          image.src = urls.regular;
           image.onload = () => {
             setLoading(false);
             resolve();
@@ -103,18 +129,20 @@ const App = () => {
     };
   }, [carousel, current]);
 
+  if (error) {
+    return (
+      <ErrorContent>
+        <p>
+          Unfortunately, the Unsplash folks only allow 50 requests per hour for development.
+          If you see this message, it means that the request to get their pictures have been blocked.
+          Please try again in an hour <span aria-label="aww" role="img">😅</span>
+        </p>
+      </ErrorContent>
+    )
+  }
+
   return (
     <Fragment>
-      {error && (
-        <ErrorContent>
-          <p>
-            Unfortunately, the Unsplash folks only allow 50 requests per hour for development.
-            If you see this message, it means that the request to get their pictures have been blocked.
-            Please try again in an hour <span aria-label="aww" role="img">😅</span>. But hey, you can still
-            check your status:
-          </p>
-        </ErrorContent>
-      )}
       <Content>
         {(loading && carousel.length < 2) || (loading && current === carousel.length - 1)
           ? <Spinner/>
@@ -122,7 +150,17 @@ const App = () => {
             <Fragment>
               <Arrow onClick={decrement} hidden={current === 0} direction="left"/>
               <ColumnFlex>
-                <FeaturedImage src={carousel[current].src} alt=""/>
+                <a href={carousel[current].imageUrl} rel="noopener noreferrer" target="_blank">
+                  <FeaturedImage src={carousel[current].src} alt=""/>
+                </a>
+                {carousel[current].author.length > 0 && (
+                  <h4>
+                    Image by{' '}
+                    <Link href={carousel[current].authorUrl} rel="noopener noreferrer" target="_blank">
+                      {carousel[current].author}
+                    </Link>
+                  </h4>
+                )}
                 <Emojis>
                   {emojiMeta.map(({unicode}) => (
                     <Emoji

@@ -31,6 +31,20 @@ export const ErrorContent = styled(Content)`
 export const FeaturedImage = styled.img`
   height: 400px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all .2s ease-in-out;
+
+  @media (min-width: 750px) {
+    &:hover, &:focus {
+      transition: all .2s ease-in-out;
+      cursor: pointer;
+      transform: scale(1.05);
+    }
+  }
+  
+  @media (max-width: 750px) {
+    width: 80vw;
+    object-fit: cover;
+  }
 `;
 
 const spin = keyframes`
@@ -90,10 +104,25 @@ export const Arrow = styled.i<ArrowProps>`
     display: none;
   `};
   
-  &:hover, &:active {
-    border: solid lightblue;
+  @media (min-width: 750px) {
+    &:hover, &:active {
+      border: solid lightblue;
+      border-width: 0 var(--arrow-size) var(--arrow-size) 0;
+      cursor: pointer;
+    }
+  }
+  
+  @media (max-width: 750px) {
+    bottom: 48px;
+    --arrow-size: 4px;
+    height: calc(var(--arrow-size) * 3);
     border-width: 0 var(--arrow-size) var(--arrow-size) 0;
-    cursor: pointer;
+    padding: calc(var(--arrow-size) * 3);
+    transition: all 0.1s ease-in-out;
+        
+    &:active {
+      transform: scale(0.7);
+    }
   }
 `;
 
@@ -113,6 +142,12 @@ export const Emojis = styled.div`
     align-self: center;
     justify-self: center;
   }
+  
+  @media (max-width: 750px) {
+    width: 70vw;
+    position: fixed;
+    bottom: 30px;
+  }
 `;
 
 interface EmojiProps {
@@ -125,9 +160,36 @@ export const Emoji = styled.span<EmojiProps>`
   `};
   font-size: 64px;
   transition: all .2s ease-in-out;
+  user-select: none;
 
-  &:hover {
+  @media (min-width: 750px) {
+    &:hover, &:focus {
+      cursor: pointer;
+      transform: scale(1.2);
+    }
+    
+    &:active {
+      transform: scale(1);
+    }
+  }
+  
+  @media (max-width: 750px) {
+    font-size: 45px;
+    transition: all 0.1s ease-in-out;
+    
+    &:active {
+      transform: scale(0.7);
+    }
+  }
+`;
+
+export const Link = styled.a`
+  text-decoration: none;
+  color: #4b9fff;
+  font-weight: bold;
+  
+  &:hover, &:active {
     cursor: pointer;
-    transform: scale(1.2);
+    color: #65ccff;
   }
 `;
