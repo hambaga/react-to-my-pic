@@ -73,9 +73,7 @@ const App = () => {
     setLoading(true);
     photos.getRandomPhoto({})
       .then(res => res.json())
-      .then((val) => {
-        console.log(val);
-        const {urls, user, links} = val;
+      .then(({urls, user, links}) => {
         const src = urls.regular;
         setCarousel([
           ...restCarousel, {
