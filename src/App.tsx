@@ -21,7 +21,7 @@ interface CarouselItem {
   imageUrl: string;
 }
 
-export type EmojiUnicode = '👍' | '🤔' | '😆' | '💩';
+export type EmojiUnicode = '👍' | '🤔' | '😆' | '😋';
 
 const {photos} = new Unsplash(unsplash);
 
@@ -152,7 +152,7 @@ const App = () => {
                   </h4>
                 )}
                 <Emojis>
-                  {['👍', '🤔', '😆', '💩'].map((emoji) => (
+                  {['👍', '🤔', '😆', '😋'].map((emoji) => (
                     <Emoji
                       onClick={getEmojiHandler(emoji as EmojiUnicode)}
                       blurred={carousel[current].reaction !== null && carousel[current].reaction !== emoji}
